@@ -1,0 +1,97 @@
+﻿@model ASP.NET_xmsz.Models.ReplyPost
+<style>
+    .container {
+        padding-right: 150px;
+        padding-left: 150px;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 50px;
+    }
+
+    tbody tr {
+        height: 230px;
+    }
+
+    .modal-dialog {
+        padding-top: 120px;
+        width: 350px;
+    }
+
+    .modal-content {
+        width: 350px;
+    }
+
+    .rtop {
+        position: fixed;
+        z-index: 50;
+        top: 500px;
+        right: 160px;
+    }
+</style>
+<script>
+    $(function () {
+        $('#rep').click(function () {
+            $.post("/Post/AddReply",{postid:@Model.Post.Id,rcontent:$('#rcontent').val()},function(data){
+                if(data=='success'){
+                    location.href='/Post/ShowPost?postid=@Model.Post.Id';
+                }
+                if(data=='log'){
+                    $('#Log').modal('show');
+                    $('#Log').on('shown.bs.modal');
+                }
+                data;
+            })
+        });
+        $('#back').click(function(){
+            location.href="@ViewBag.url";
+        });
+    });
+</script>
+<div class="row">
+    <div class="rtop btn-group-vertical">
+        <a href="#" class="btn btn-default btn-lg">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+        </a>
+        <a href="#reform" class="btn btn-default btn-lg">
+            <span class="glyphicon glyphicon-comment"></span>
+        </a>
+    </div>
+    <h3>@Model.Post.Forums.ForumsTitle</h3>
+    <button class="btn btn-primary pull-right" id="back" style="margin-bottom:5px;font-size:18px">返回</button>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td class="col-md-2 info">查看：<span style="color:red;">@Model.Post.ClickNum</span>回复：<span style="color:red;">@Model.Reply.Count</span></td>
+                <td class="col-md-10 info">@Model.Post.Title</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Post.Users.username</td>
+                <td>
+                    <p>@Model.Post.Content</p>
+                    <p class="pull-right text-muted" style="margin-top: 160px;">@Model.Post.CreateTime</p>
+                </td>
+            </tr>
+            @foreach (var item in Model.Reply)
+            {
+                <tr>
+                    <td>@item.Users.username</td>
+                    <td>
+                        <p>@item.Content</p>
+                        <p class="pull-right text-muted" style="margin-top: 160px;">@item.ReplyTime</p>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td></td>
+                <td>
+                    <form id="reform" action="/Post/AddReply" method="post">
+                        <textarea class="form-control" name="rcontent" id="rcontent" style="width: 570px;height: 200px;resize: none;"></textarea>
+                        <input type="button" id="rep" value="发表回复" class="btn btn-primary" />
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,93 @@
+﻿@model ASP.NET_xmsz.Models.ForumsList
+@{
+    ViewBag.Title = "Forums";
+}
+
+<style>
+    body {
+        background-color: #EEEEEE;
+    }
+
+    .forums {
+        font-family: "微软雅黑";
+        padding-left: 150px;
+        margin-top: 30px;
+    }
+
+    .forums-list {
+        margin-top: 50px;
+    }
+
+    .forums-content {
+        margin-top: 30px;
+    }
+
+        .forums-content a {
+            margin-top: 15px;
+        }
+</style>
+<!--登录窗口-->
+<div class="modal" id="Log" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+                <h4 class="modal-title">请先登录</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/Login/Login" method="post" class="tab-pane fade in active" name="log" id="log">
+                    <div class="form-group" id="username-group">
+                        <label class="control-label hidden" for="username">用户名不能为空</label>
+                        <input type="text" class="form-control" name="username" id="username" value="" placeholder="用户名" />
+                    </div>
+                    <div class="form-group" id="userpass-group">
+                        <label class="control-label hidden" for="username">密码不能为空</label>
+                        <input type="password" class="form-control" name="userpass" id="userpass" value="" placeholder="密码" />
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="remember" id="remember"> 记住我
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal">取消</button>
+                <button class="btn btn-primary" id="logsub">登录</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--登录窗口-->
+<div class="row">
+    <div class="forums-list">
+        @for (int i = 0; i < Model.Forums.Count; i++)
+        {
+            Model.Post = new Biz.GetPost().SelectLastPost(Model.Forums[i].Id);
+            <div class="col-md-6 forums">
+                <h3 class="forums-title">@Model.Forums[i].ForumsTitle</h3>
+                <div class="forums-content">
+                    <p>帖子数:<span>@Model.Forums[i].Post.Count</span></p>
+                    <p>
+                        @if (Model.Post != null)
+                        {
+                            <span><a href="/Post/ShowPost?postid=@Model.Post.Id">@Model.Post.Title</a></span>
+                            <span><a href="">@Model.Post.Users.username</a></span>
+                            <br />
+                            <span>@string.Format("{0:f}", Model.Post.CreateTime)</span>
+                            @*<span>@Model.Post.CreateTime</span>*@
+                        }
+                        else
+                        {
+                            <br />
+                            <span>暂无新帖</span>
+                        }
+                    </p>
+                    <a href="/PostList/Index?forumsid=@Model.Forums[i].Id" class=" btn btn-default enterforums">点击进入</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

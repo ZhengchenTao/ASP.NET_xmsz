@@ -1,0 +1,143 @@
+﻿@model PagedList.IPagedList<Biz.Forums>
+@using PagedList.Mvc;
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    string url = Request.Url.ToString();
+}
+<script>
+    $(function () {
+        var edit = 0;
+        $('#left-nav-forum').addClass("active");
+        $('.glyphicon-cog').click(function () {
+            if (edit == 0) {
+                var eid = $(this).attr('att');
+                $('.show_' + eid + '').addClass('hidden');
+                $('.edit_' + eid + '').removeClass('hidden');
+                edit = 1;
+            } else {
+                $('#message-content').html(null);
+                $('#message-content').append('请先完成当前编辑');
+                $('#mes').modal('show');
+            }
+        });
+        $('.glyphicon-trash').click(function () {
+            var eid = $(this).attr('att');
+            $('#message-content').html(null);
+            $('#message-content').append('确认删除？');
+            $('#mes').modal('show');
+            $('#model-btn').click(function () {
+                $('#mes').modal('hide');
+                $.post("/Admin/ForumDelete", { fid: eid }, function (data) {
+                    if (data.state == 'Success') {
+                        $('#message-content2').html(null);
+                        $('#message-content2').append(data.message);
+                        $('#mes2').modal('show');
+                        $('#model-btn2').click(function () {
+                            location.href = '@url';
+                        });
+                    } else {
+                        $('#message-content2').html(null);
+                        $('#message-content2').append(data.message);
+                        $('#mes2').modal('show');
+                    }
+                });
+            });
+        });
+        $('.glyphicon-ok').click(function () {
+            var flag = 0;
+            var eid = $(this).attr('att');
+            var etitle = $('#forumstitle_' + eid + '').val();
+            var ftitle = $('#ftitle_' + eid + '').html();
+            if (etitle == ftitle) {
+                $('#message-content').html(null);
+                $('#message-content').append('未做任何修改');
+                $('#mes').modal('show');
+            } else {
+                $.post("/Admin/ForumUpdate", { forumid: eid, forumstitle: etitle }, function (data) {
+                    if (data.state == 'Success') {
+                        $('#message-content2').html(null);
+                        $('#message-content2').append(data.message);
+                        $('#mes2').modal('show');
+                        $('#model-btn2').click(function () {
+                            location.href = '@url';
+                        });
+                    } else {
+                        $('#message-content').html(null);
+                        $('#message-content').append(data.message);
+                        $('#mes').modal('show');
+                    }
+                })
+            }
+        });
+        $('.glyphicon-remove').click(function () {
+            var eid = $(this).attr('att');
+            $('.show_' + eid + '').removeClass('hidden');
+            $('.edit_' + eid + '').addClass('hidden');
+            edit = 0;
+        });
+        $('#addforum').click(function () {
+            $('#message-content').html(null);
+            $('#message-content').append('<input type="text" class="form-control" id="addforumname" placeholder="请输入板块名称">');
+            $('#mes').modal('show');
+            $('#model-btn').click(function () {
+                var title = $('#addforumname').val();
+                $.post("/Admin/ForumAdd", { forumtitle: title }, function (data) {
+                    $('#message-content2').html(null);
+                    $('#message-content2').append(data.message);
+                    $('#mes2').modal('show');
+                    $('#model-btn2').click(function () {
+                        location.href = '@url';
+                    });
+                });
+            });
+        });
+    });
+</script>
+<style>
+    .forums-table {
+        width: 80%;
+        margin-left: 100px;
+    }
+
+    .input-sm {
+        width: 100px;
+    }
+</style>
+
+<div class="forums-table">
+    <button class="btn btn-primary pull-right" id="addforum"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;添加板块</button>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>板块名</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>
+                        <span class="show_@item.Id" id="ftitle_@item.Id">@item.ForumsTitle</span>
+                        <input type="text" class="form-control hidden input-sm edit_@item.Id" id="forumstitle_@item.Id" value="@item.ForumsTitle" />
+                    </td>
+                    <td>
+                        <div class="show_@item.Id">
+                            <a href="#"><span class="glyphicon glyphicon-cog" att="@item.Id"></span></a>&nbsp;&nbsp;
+                            <a href="#"><span class="glyphicon glyphicon-trash" att="@item.Id"></span></a>
+                        </div>
+                        <div class="hidden edit_@item.Id">
+                            <a href="#"><span class="glyphicon glyphicon-ok" att="@item.Id"></span></a>&nbsp;&nbsp;
+                            <a href="#"><span class="glyphicon glyphicon-remove" att="@item.Id"></span></a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="text-center">
+        @Html.PagedListPager(Model, page => Url.Action("ForumManage", new { page }))
+    </div>
+</div>

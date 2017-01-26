@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP.NET_xmsz", "ASP.NET_xmsz\ASP.NET_xmsz.csproj", "{00B4EDF4-BEA7-42E8-A6FB-31EDC85ABF42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biz", "Biz\Biz.csproj", "{CE114B13-5618-4949-8C39-AC12D3242C31}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00B4EDF4-BEA7-42E8-A6FB-31EDC85ABF42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00B4EDF4-BEA7-42E8-A6FB-31EDC85ABF42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00B4EDF4-BEA7-42E8-A6FB-31EDC85ABF42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00B4EDF4-BEA7-42E8-A6FB-31EDC85ABF42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE114B13-5618-4949-8C39-AC12D3242C31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE114B13-5618-4949-8C39-AC12D3242C31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE114B13-5618-4949-8C39-AC12D3242C31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE114B13-5618-4949-8C39-AC12D3242C31}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

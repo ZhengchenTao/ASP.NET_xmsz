@@ -1,0 +1,173 @@
+﻿@model PagedList.IPagedList<Biz.Users>
+@using PagedList.Mvc;
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    string url = Request.Url.ToString();
+}
+<script>
+    $(function () {
+        var edit = 0;
+        $('#left-nav-user').addClass("active");
+        $('.glyphicon-cog').click(function () {
+            if (edit == 0) {
+                var eid = $(this).attr('att');
+                $('.show_' + eid + '').addClass('hidden');
+                $('.edit_' + eid + '').removeClass('hidden');
+                edit = 1;
+            } else {
+                $('#message-content').html(null);
+                $('#message-content').append('请先完成当前编辑');
+                $('#mes').modal('show');
+            }
+        });
+        $('.glyphicon-trash').click(function () {
+            var eid = $(this).attr('att');
+            $('#message-content').html(null);
+            $('#message-content').append('确认删除？');
+            $('#mes').modal('show');
+            $('#model-btn').click(function () {
+                $('#mes').modal('hide');
+                $.post("/Admin/UserDelete", { userid: eid }, function (data) {
+                    if (data.state == 'Success') {
+                        $('#message-content2').html(null);
+                        $('#message-content2').append(data.message);
+                        $('#mes2').modal('show');
+                        $('#model-btn2').click(function () {
+                            location.href = '@url';
+                        });
+                    } else {
+                        $('#message-content2').html(null);
+                        $('#message-content2').append(data.message);
+                        $('#mes2').modal('show');
+                    }
+                });
+            });
+        });
+        $('.glyphicon-ok').click(function () {
+            var flag = 0;
+            var eid = $(this).attr('att');
+            var euname = $('#username_' + eid + '').val();
+            var eupass = $('#userpass_' + eid + '').val();
+            var erole = $('#role_' + eid + '').val();
+            var uname = $('#uname_' + eid + '').html();
+            var upass = $('#upass_' + eid + '').html();
+            var role = $('#urole_' + eid + '').attr('att');
+            if (euname.length < 3 || euname.length > 8) {
+                $('#message-content').html(null);
+                $('#message-content').append('用户名长度在3~8个字符之间');
+                $('#mes').modal('show');
+                flag = 0;
+            } else {
+                flag++;
+                if (eupass.length < 3 || eupass.length > 8) {
+                    $('#message-content').html(null);
+                    $('#message-content').append('密码长度在3~8个字符之间');
+                    $('#mes').modal('show');
+                    flag = 0;
+                } else {
+                    flag++;
+                }
+            }
+            if (euname == uname && eupass == upass && erole == role) {
+                $('#message-content').html(null);
+                $('#message-content').append('未做任何修改');
+                $('#mes').modal('show');
+                flag = 0;
+            }
+            if (flag == 2) {
+                $.post("/Admin/UserUpdate", { userid: eid, username: euname, userpass: eupass, role: erole }, function (data) {
+                    if (data.state == 'Success') {
+                        $('#message-content').html(null);
+                        $('#message-content').append(data.message);
+                        $('#mes').modal('show');
+                        $('#model-btn').click(function () {
+                            location.href = '@url';
+                        });
+                    } else {
+                        $('#message-content').html(null);
+                        $('#message-content').append(data.message);
+                        $('#mes').modal('show');
+                    }
+                })
+            }
+        });
+        $('.glyphicon-remove').click(function () {
+            var eid = $(this).attr('att');
+            $('.show_' + eid + '').removeClass('hidden');
+            $('.edit_' + eid + '').addClass('hidden');
+            edit = 0;
+        });
+    });
+</script>
+<style>
+    .user-table {
+        width: 80%;
+        margin-left: 100px;
+    }
+
+    .input-sm {
+        width: 100px;
+    }
+</style>
+
+<div class="user-table">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>用户名</th>
+                <th>密码</th>
+                <th>权限</th>
+                <th>注册时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                string ro = "普通用户";
+                if (item.Role == 1)
+                {
+                    ro = "版主";
+                }
+                else if (item.Role == 2)
+                {
+                    ro = "管理员";
+                }
+                <tr>
+                    <td>@item.Id</td>
+                    <td>
+                        <span class="show_@item.Id" id="uname_@item.Id">@item.username</span>
+                        <input type="text" class="form-control hidden input-sm edit_@item.Id" id="username_@item.Id" value="@item.username" />
+                    </td>
+                    <td>
+                        <span class="show_@item.Id" id="upass_@item.Id">@item.userpass</span>
+                        <input type="text" class="form-control hidden input-sm edit_@item.Id" id="userpass_@item.Id" value="@item.userpass" />
+                    </td>
+                    <td>
+                        <span class="show_@item.Id" id="urole_@item.Id" att="@item.Role">@ro</span>
+                        <select class="form-control hidden input-sm edit_@item.Id" id="role_@item.Id">
+                            <option value="0">普通用户</option>
+                            <option value="1">版主</option>
+                            <option value="2">管理员</option>
+                        </select>
+                    </td>
+                    <td>@string.Format("{0:F}", item.regtime)</td>
+                    <td>
+                        <div class="show_@item.Id">
+                            <a href="#"><span class="glyphicon glyphicon-cog" att="@item.Id"></span></a>&nbsp;&nbsp;
+                            <a href="#"><span class="glyphicon glyphicon-trash" att="@item.Id"></span></a>
+                        </div>
+                        <div class="hidden edit_@item.Id">
+                            <a href="#"><span class="glyphicon glyphicon-ok" att="@item.Id"></span></a>&nbsp;&nbsp;
+                            <a href="#"><span class="glyphicon glyphicon-remove" att="@item.Id"></span></a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="text-center">
+        @Html.PagedListPager(Model, page => Url.Action("UserManage", new { page }))
+    </div>
+</div>
