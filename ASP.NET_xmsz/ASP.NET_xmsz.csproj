@@ -212,6 +212,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701301042544_Initial.cs" />
+    <Compile Include="Migrations\201701301042544_Initial.Designer.cs">
+      <DependentUpon>201701301042544_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ForumsList.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -225,6 +229,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="img\headportrait\default.jpg" />
     <Content Include="img\indexbg.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -272,6 +277,7 @@
     <Content Include="Views\Admin\ForumManage.cshtml" />
     <Content Include="Views\Admin\PostManage.cshtml" />
     <Content Include="Views\Admin\AdminLogin.cshtml" />
+    <Content Include="Views\person\personIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -289,6 +295,11 @@
       <Project>{ce114b13-5618-4949-8c39-ac12d3242c31}</Project>
       <Name>Biz</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201701301042544_Initial.resx">
+      <DependentUpon>201701301042544_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

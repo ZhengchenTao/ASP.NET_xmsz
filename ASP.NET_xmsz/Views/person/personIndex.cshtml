@@ -1,0 +1,227 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    * {
+        font-family: "黑体";
+    }
+
+    body {
+        background-color: #EEEEEE;
+    }
+
+    .navbar-right {
+        margin-right: 5px;
+    }
+
+    .navbar-header a {
+        font-size: 30px;
+    }
+
+    .modal-dialog {
+        padding-top: 120px;
+        width: 350px;
+    }
+
+    .modal-content {
+        width: 350px;
+    }
+
+    .person {
+        width: 100%;
+        height: 650px;
+    }
+
+    .person-top {
+        height: 240px;
+        margin: 10px;
+        background-color: white;
+    }
+
+    .headportrait-left img {
+        height: 140px;
+        width: 140px;
+        margin: 50px;
+    }
+
+    .headportrait-right {
+        height: 100%;
+    }
+
+    .person-info span {
+        margin: 10px;
+    }
+
+    .person-detail {
+        margin-top: 20px;
+    }
+
+        .person-detail span {
+            margin: 10px;
+        }
+
+    .person-bottom-left {
+        margin: 10px;
+        width: 70%;
+        float: left;
+        display: block;
+    }
+
+    .tab-pane {
+        background-color: white;
+        height: 300px;
+        padding: 20px;
+    }
+
+    .person-bottom-right {
+        width: 26%;
+        height: 300px;
+        margin: 10px;
+        margin-top: 52px;
+        float: right;
+        background-color: white;
+        display: block;
+    }
+
+    .level {
+        margin: 30px;
+    }
+
+    .progress {
+        margin-top: 20px;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $('#myTabs a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        });
+        $('.person-top').mouseover(function () {
+            $('#editicon').removeClass('hidden');
+        });
+        $('.person-top').mouseleave(function () {
+            $('#editicon').addClass('hidden');
+        });
+    });
+</script>
+<div class="person">
+    <div class="person-top row">
+        <div class="headportrait-left col-md-3">
+            <img src="~/img/headportrait.jpg" alt="未上传头像" class="img-thumbnail">
+        </div>
+        <div class="headportrait-right col-md-9">
+            <div class="person-info">
+                <div class="person-nickname">
+                    <h2>aaa   <small><span class="label label-info">二级</span></small></h2>
+                    <a id="editicon" class="hidden" href="#" style="color: #000000;position: absolute;top: 20px;right: 20px;font-size: 23px;"><span class="glyphicon glyphicon-edit"></span></a>
+                </div>
+                <div class="person-detail">
+                    <span class="info-sex">男</span><span>|</span><span class="info-add">山东,济南</span><span>|</span><span class="info-brith">1996年8月29日</span>
+                    <hr />
+                    <strong><p>个人简介</p></strong>
+                    <p>暂时没有简介暂时没有简介暂时没有简介暂时没有简介暂时没有简介暂时没有简介暂时没有简介暂时没有简介暂时没有简介暂时没有简介暂时没有简介暂时没有简介暂时没有简介暂时没有简介暂时没有简介暂时没有简介暂时没有简介暂时没有简介暂时没有简介暂时没有简介暂时没有简介暂时没有简介暂时没有简介啊啊啊</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="person-bottom">
+        <div class="person-bottom-left">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#mypost" aria-controls="mypost" role="tab" data-toggle="tab">我的发帖</a>
+                </li>
+                <li role="presentation">
+                    <a href="#myreply" aria-controls="myreply" role="tab" data-toggle="tab">我的回复</a>
+                </li>
+                <li role="presentation">
+                    <a href="#myforum" aria-controls="messages" role="tab" data-toggle="tab">我的板块</a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="mypost">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>标题</th>
+                                <th>时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a href="">adsfasdfdas</a>
+                                </td>
+                                <td>2017-1-1</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="">adsfasdfdas</a>
+                                </td>
+                                <td>2017-1-1</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="">adsfasdfdas</a>
+                                </td>
+                                <td>2017-1-1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="myreply">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>内容</th>
+                                <th>时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a href="">adsfasdfdas</a>
+                                </td>
+                                <td>2017-1-1</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="">adsfasdfdas</a>
+                                </td>
+                                <td>2017-1-1</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="">adsfasdfdas</a>
+                                </td>
+                                <td>2017-1-1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="myforum">
+                    您还没有管理板块
+                    <button class="btn btn-primary" style="float: right;">申请版主</button>
+                </div>
+            </div>
+        </div>
+        <div class="person-bottom-right text-center">
+            <div class="level">
+                <h4>您的经验值为<small><span>50/100</span></small></h4>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
+                    </div>
+                </div>
+                <h5 style="margin-top: 45px;">每日登陆 +5 exp</h5>
+                <h5>发 帖 +20 exp</h5>
+                <h5>回 复 +10 exp</h5><br />
+                <h5>注：等级为7级时可申请版主</h5>
+            </div>
+        </div>
+    </div>
+</div>

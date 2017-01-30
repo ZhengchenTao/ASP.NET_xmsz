@@ -208,3 +208,5 @@ C:\Users\86305\Desktop\ASP.NET_xmsz备份\ASP.NET_xmsz\bin\zh-Hans\Microsoft.Owi
 C:\Users\86305\Desktop\ASP.NET_xmsz备份\ASP.NET_xmsz\obj\Debug\ASP.NET_xmsz.csprojResolveAssemblyReference.cache
 C:\Users\86305\Desktop\ASP.NET_xmsz备份\ASP.NET_xmsz\obj\Debug\ASP.NET_xmsz.dll
 C:\Users\86305\Desktop\ASP.NET_xmsz备份\ASP.NET_xmsz\obj\Debug\ASP.NET_xmsz.pdb
+D:\CodingResource\MVC\src\ASP.NET_xmsz\ASP.NET_xmsz\obj\Debug\ASP.NET_xmsz.Migrations.Initial.resources
+D:\CodingResource\MVC\src\ASP.NET_xmsz\ASP.NET_xmsz\obj\Debug\ASP.NET_xmsz.csproj.GenerateResource.Cache

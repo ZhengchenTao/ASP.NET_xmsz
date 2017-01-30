@@ -58,7 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Db.cs" />
+    <Compile Include="Entity\District.cs" />
     <Compile Include="Entity\Forums.cs" />
+    <Compile Include="GetDistricts.cs" />
     <Compile Include="GetForums.cs" />
     <Compile Include="GetPost.cs" />
     <Compile Include="GetReply.cs" />
@@ -70,6 +72,14 @@
     <Compile Include="Migrations\201606020211134_Initial1.cs" />
     <Compile Include="Migrations\201606020211134_Initial1.Designer.cs">
       <DependentUpon>201606020211134_Initial1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701301053208_Initial2.cs" />
+    <Compile Include="Migrations\201701301053208_Initial2.Designer.cs">
+      <DependentUpon>201701301053208_Initial2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701301201018_Initial3.cs" />
+    <Compile Include="Migrations\201701301201018_Initial3.Designer.cs">
+      <DependentUpon>201701301201018_Initial3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Entity\Post.cs" />
@@ -87,6 +97,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606020211134_Initial1.resx">
       <DependentUpon>201606020211134_Initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701301053208_Initial2.resx">
+      <DependentUpon>201701301053208_Initial2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701301201018_Initial3.resx">
+      <DependentUpon>201701301201018_Initial3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

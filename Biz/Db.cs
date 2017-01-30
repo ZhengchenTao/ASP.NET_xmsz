@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using Biz.Entity;
 
 namespace Biz
 {
@@ -17,5 +18,6 @@ namespace Biz
         public DbSet<Forums> Forums { get; set; }
         public DbSet<Post> Post { get; set; }
         public DbSet<Reply> Reply { get; set; }
+        public DbSet<District> district { get; set; }
     }
 }

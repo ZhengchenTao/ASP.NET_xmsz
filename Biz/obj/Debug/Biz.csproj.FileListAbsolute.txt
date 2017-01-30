@@ -17,3 +17,5 @@ D:\CodingResource\MVC\src\ASP.NET_xmsz\Biz\bin\Debug\PagedList.Mvc.dll
 D:\CodingResource\MVC\src\ASP.NET_xmsz\Biz\bin\Debug\PagedList.xml
 D:\CodingResource\MVC\src\ASP.NET_xmsz\Biz\bin\Debug\PagedList.Mvc.xml
 D:\CodingResource\MVC\src\ASP.NET_xmsz\Biz\obj\Debug\Biz.Migrations.Initial1.resources
+D:\CodingResource\MVC\src\ASP.NET_xmsz\Biz\obj\Debug\Biz.Migrations.Initial2.resources
+D:\CodingResource\MVC\src\ASP.NET_xmsz\Biz\obj\Debug\Biz.Migrations.Initial3.resources

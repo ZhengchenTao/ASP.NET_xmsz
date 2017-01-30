@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Biz
 {
@@ -23,6 +18,21 @@ namespace Biz
         [Required]
         [DefaultValue(0)]
         public int Role { get; set; }
-
+        [Required]
+        [DefaultValue(0)]
+        public int districtId { get; set; }
+        [Required]
+        [DefaultValue(0)]
+        public int sex { get; set; }
+        [Required]
+        [DefaultValue(0)]
+        public int exp { get; set; }
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy年MM月dd月}", ApplyFormatInEditMode = true)]
+        public DateTime birthday { get; set; }
+        [Required]
+        public string headportrait { get; set; }
+        [Required]
+        public string introduce { get; set; }
     }
 }
