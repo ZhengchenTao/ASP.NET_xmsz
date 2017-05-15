@@ -9,9 +9,9 @@ namespace Biz
     public class GetUsers
     {
         public Db Db = new Db();
-        public bool Login(string username,string userpass)
+        public bool Login(string username, string userpass)
         {
-           Users user = Db.Users.SingleOrDefault(u => u.username == username && u.userpass == userpass);
+            Users user = Db.Users.SingleOrDefault(u => u.username == username && u.userpass == userpass);
             if (user != null)
             {
                 return true;
@@ -71,7 +71,7 @@ namespace Biz
                 up.Role = us.Role;
                 return Db.SaveChanges() > 0 ? true : false;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
                 throw;

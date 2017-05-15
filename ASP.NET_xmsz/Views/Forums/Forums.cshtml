@@ -74,7 +74,7 @@
                         @if (Model.Post != null)
                         {
                             <span><a href="/Post/ShowPost?postid=@Model.Post.Id">@Model.Post.Title</a></span>
-                            <span><a href="">@Model.Post.Users.username</a></span>
+                            <span><a href="/Person/Index?id=@Model.Post.Users.Id">@Model.Post.Users.username</a></span>
                             <br />
                             <span>@string.Format("{0:f}", Model.Post.CreateTime)</span>
                             @*<span>@Model.Post.CreateTime</span>*@

@@ -17,7 +17,7 @@ namespace Biz
         public IList<District> selectCity(int provinceId)
         {
             IList<District> re = db.district.Where(d => d.parent_id == provinceId).ToList();
-            if (re[0] == null)
+            if (re.Count == 0)
             {
                 return db.district.Where(d => d.id == provinceId).ToList();
             }
@@ -25,6 +25,20 @@ namespace Biz
             {
                 return re;
             }
+        }
+        public string showProvinceCtity(int id)
+        {
+            District city = db.district.SingleOrDefault(d => d.id == id);
+            if (city == null)
+            {
+                return "未选择城市";
+            }
+            if (city.parent_id == 0)
+            {
+                return city.name;
+            }
+            District province = db.district.SingleOrDefault(d => d.id == city.parent_id);
+            return province.name + "," + city.name;
         }
 
     }

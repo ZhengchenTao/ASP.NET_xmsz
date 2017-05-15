@@ -1,0 +1,6 @@
+D:\CodingResource\MVC\src\ASP.NET_xmsz\test\obj\Debug\test.csprojResolveAssemblyReference.cache
+D:\CodingResource\MVC\src\ASP.NET_xmsz\test\bin\Debug\test.exe.config
+D:\CodingResource\MVC\src\ASP.NET_xmsz\test\bin\Debug\test.exe
+D:\CodingResource\MVC\src\ASP.NET_xmsz\test\bin\Debug\test.pdb
+D:\CodingResource\MVC\src\ASP.NET_xmsz\test\obj\Debug\test.exe
+D:\CodingResource\MVC\src\ASP.NET_xmsz\test\obj\Debug\test.pdb

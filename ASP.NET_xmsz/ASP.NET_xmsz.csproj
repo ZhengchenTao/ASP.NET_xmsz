@@ -76,6 +76,8 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -207,8 +209,10 @@
     <Compile Include="Controllers\ForumsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\PostListController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -220,6 +224,7 @@
     <Compile Include="Models\ForumsList.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Jsonre.cs" />
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Models\PostList.cs" />
     <Compile Include="Models\ReplyPost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -278,9 +283,12 @@
     <Content Include="Views\Admin\PostManage.cshtml" />
     <Content Include="Views\Admin\AdminLogin.cshtml" />
     <Content Include="Views\person\personIndex.cshtml" />
+    <Content Include="Views\Post\PostSearch.cshtml" />
+    <Content Include="Views\person\PersonEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -294,6 +302,10 @@
     <ProjectReference Include="..\Biz\Biz.csproj">
       <Project>{ce114b13-5618-4949-8c39-ac12d3242c31}</Project>
       <Name>Biz</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{4d3650fb-a073-4961-9c8e-6ac5c9d12016}</Project>
+      <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

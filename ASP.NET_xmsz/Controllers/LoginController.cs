@@ -14,9 +14,6 @@ namespace ASP.NET_xmsz.Controllers
         [HttpPost]
         public ActionResult Login(Users u, string remember)
         {
-            /*Users u = new Users();
-            u.username = username;
-            u.userpass = userpass;*/
             if (Session["userId"] != null)
             {
                 re.state = "Error";

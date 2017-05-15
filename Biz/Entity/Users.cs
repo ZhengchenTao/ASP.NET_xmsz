@@ -11,7 +11,6 @@ namespace Biz
         public string username { get; set; }
         [Required]
         public string userpass { get; set; }
-        [Required]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy年MM月dd月 HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime regtime { get; set; }
@@ -24,6 +23,7 @@ namespace Biz
         [Required]
         [DefaultValue(0)]
         public int sex { get; set; }
+        //经验值
         [Required]
         [DefaultValue(0)]
         public int exp { get; set; }

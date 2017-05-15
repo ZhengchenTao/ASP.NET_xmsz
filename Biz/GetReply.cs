@@ -9,6 +9,14 @@ namespace Biz
     public class GetReply
     {
         Db Db = new Db();
+        public IList<Reply> showListByUser(int id)
+        {
+            return Db.Reply.Where(r => r.Users_Id == id).ToList();
+        }
+        public IList<Reply> showListByUser(Users u)
+        {
+            return Db.Reply.Where(r => r.Users_Id == u.Id).ToList();
+        }
         public IList<Reply> SelectReply(int postid)
         {
             return Db.Reply.Include("Users").Where(r => r.Post_Id == postid).OrderBy(r => r.ReplyTime).ToList();
@@ -30,7 +38,7 @@ namespace Biz
         }
         public Reply SelectLastReply(int postid)
         {
-            IList<Reply> re = Db.Reply.Include("Users").Where(r => r.Post_Id == postid).OrderByDescending(r=>r.ReplyTime).ToList();
+            IList<Reply> re = Db.Reply.Include("Users").Where(r => r.Post_Id == postid).OrderByDescending(r => r.ReplyTime).ToList();
             if (re.Count != 0)
             {
                 var a = re.First();

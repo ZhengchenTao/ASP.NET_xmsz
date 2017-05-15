@@ -1,0 +1,5 @@
+D:\CodingResource\MVC\src\ASP.NET_xmsz\Common\bin\Debug\Common.dll
+D:\CodingResource\MVC\src\ASP.NET_xmsz\Common\bin\Debug\Common.pdb
+D:\CodingResource\MVC\src\ASP.NET_xmsz\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+D:\CodingResource\MVC\src\ASP.NET_xmsz\Common\obj\Debug\Common.dll
+D:\CodingResource\MVC\src\ASP.NET_xmsz\Common\obj\Debug\Common.pdb

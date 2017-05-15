@@ -9,6 +9,14 @@ namespace Biz
     public class GetPost
     {
         Db Db = new Db();
+        public IList<Post> showListByUser(int id)
+        {
+            return Db.Post.Include("Forums").Where(p => p.Users_Id == id).ToList();
+        }
+        public IList<Post> showListByUser(Users u)
+        {
+            return Db.Post.Include("Forums").Where(p => p.Users_Id == u.Id).ToList();
+        }
         public IList<Post> SelectPost()
         {
             return Db.Post.Include("Users").Include("Forums").ToList();
@@ -84,5 +92,10 @@ namespace Biz
             }
 
         }
+        public IList<Post> SearchPost(string postname)
+        {
+            return Db.Post.Include("Users").Where(a => a.Title.Contains(postname)).ToList();
+        }
+
     }
 }

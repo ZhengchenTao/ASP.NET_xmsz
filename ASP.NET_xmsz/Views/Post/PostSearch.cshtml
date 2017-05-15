@@ -1,0 +1,77 @@
+﻿@model ASP.NET_xmsz.Models.PostList
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "PostList";
+}
+<style>
+    .container {
+        margin-top: 40px;
+    }
+</style>
+<script>
+    $(function () {
+        $('.forums-nav').hover(function () {
+            $(this).addClass('active');
+        }, function () {
+            $(this).removeClass('active');
+        });
+    });
+</script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 col-sm-2 col-xs-2 forums-nav">
+            <h4>板块导航</h4>
+            <hr style="width: 100%;opacity:0.7;" />
+            <ul class="nav nav-pills nav-stacked">
+                @foreach (var forums in Model.Forums)
+                {
+                    <li role="presentation" class="forums-nav"><a href="/PostList/Index?forumsid=@forums.Id">@forums.ForumsTitle</a></li>
+                }
+            </ul>
+        </div>
+        <div class="col-md-10 col-sm-10 col-xs-10">
+            <div class="forums-info">
+                <h3 class="forums-title">搜索结果</h3>
+            </div>
+        </div>
+        <div class="col-md-10 col-sm-10 col-xs-10">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th style="width: 500px;">帖子标题</th>
+                        <th>作者</th>
+                        <th style="width: 100px;">查看/回复</th>
+                        <th>最后发表</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var post in Model.Post)
+                    {
+                        var lastrep = new Biz.GetReply().SelectLastReply(post.Id);
+                        int check = new Biz.GetReply().SelectReply(post.Id).Count();
+                        <tr>
+                            <td><a href="/Post/ShowPost?postid=@post.Id">@post.Title</a></td>
+                            <td><a href="">@post.Users.username</a></td>
+                            <td><span id="pcheck">@post.ClickNum</span>/<span>@check</span></td>
+                            @if (lastrep != null)
+                            {
+                                <td><a href=""><span id="pcheckname">@lastrep.Users.username</span></a>&nbsp;<span>@string.Format("{0:f}", lastrep.ReplyTime)</span></td>
+                            }
+                            else
+                            {
+                                <td>暂无回复</td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center">
+            @Html.PagedListPager(Model.Post, page => Url.Action("Index", new
+       {
+           page,
+           forumsid = Model.CurrentForums[0].Id
+       }))
+        </div>
+    </div>
+</div>
