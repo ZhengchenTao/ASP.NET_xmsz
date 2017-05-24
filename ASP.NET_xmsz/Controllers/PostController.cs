@@ -37,6 +37,10 @@ namespace ASP.NET_xmsz.Controllers
                     PostId = a.Id,
                     success = 1,
                 };
+                GetUsers gu = new GetUsers();
+                Users u = gu.SelectUser(userid);
+                u.exp += 20;
+                gu.UpdateUser(u);
                 return Json(ps);
             }
             return JavaScript("alert('发表失败');");
@@ -70,6 +74,10 @@ namespace ASP.NET_xmsz.Controllers
             {
                 return JavaScript("alert('回复失败');");
             }
+            GetUsers gu = new GetUsers();
+            Users u = gu.SelectUser(userid);
+            u.exp += 10;
+            gu.UpdateUser(u);
             return Content("success");
         }
     }

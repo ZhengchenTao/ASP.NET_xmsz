@@ -19,3 +19,4 @@ D:\CodingResource\MVC\src\ASP.NET_xmsz\Biz\obj\Debug\Biz.csproj.GenerateResource
 D:\CodingResource\MVC\src\ASP.NET_xmsz\Biz\obj\Debug\Biz.dll
 D:\CodingResource\MVC\src\ASP.NET_xmsz\Biz\obj\Debug\Biz.pdb
 D:\CodingResource\MVC\src\ASP.NET_xmsz\Biz\obj\Debug\Biz.csprojResolveAssemblyReference.cache
+D:\CodingResource\MVC\src\ASP.NET_xmsz\Biz\obj\Debug\Biz.Migrations.Initial4.resources

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Biz;
-using PagedList;
+using Biz.Entity;
 
 namespace ASP.NET_xmsz.Models
 {
-    public class Person
+    public class Personedit
     {
         public Users user { get; set; }
-        public IPagedList<Post> post { get; set; }
-        public IPagedList<Reply> reply { get; set; }
+        public int parent { get; set; }
+        public int city { get; set; }
     }
 }

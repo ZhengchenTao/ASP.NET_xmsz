@@ -225,6 +225,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Jsonre.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\Personedit.cs" />
     <Compile Include="Models\PostList.cs" />
     <Compile Include="Models\ReplyPost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

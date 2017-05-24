@@ -42,8 +42,33 @@ namespace ASP.NET_xmsz.Controllers
         public ActionResult Edit()
         {
             int id = (int)Session["userId"];
-            Users us = new GetUsers().SelectUser(id);
-            return View("PersonEdit", us);
+            Personedit pr = new Personedit();
+            GetDistricts gd = new GetDistricts();
+            pr.user = new GetUsers().SelectUser(id);
+            District d = gd.getProvince(pr.user.districtId);
+            if (d.parent_id == 0)
+            {
+                pr.parent = d.id;
+            }
+            else
+            {
+                pr.parent = d.parent_id;
+            }
+            pr.city = d.id;
+            return View("PersonEdit", pr);
+        }
+        [HttpPost]
+        public ActionResult DoEdit(Users us)
+        {
+            int id = (int)Session["userId"];
+            GetUsers gu = new GetUsers();
+            Users up = gu.SelectUser(id);
+            up.sex = us.sex;
+            up.districtId = us.districtId;
+            up.introduce = us.introduce;
+            up.birthday = us.birthday;
+            gu.UpdateUser(up);
+            return RedirectToAction("../Person/Index");
         }
         [HttpPost]
         public string GetProvince()

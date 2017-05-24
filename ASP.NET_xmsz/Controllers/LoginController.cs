@@ -35,6 +35,15 @@ namespace ASP.NET_xmsz.Controllers
                     Response.Cookies["username"].Value = null;
                     Response.Cookies["userpass"].Value = null;
                 }
+                DateTime now = DateTime.Now;
+                string nowday = now.ToString("yyyy-MM-dd");
+                string lastlog = user.lastLogTime.ToString("yyyy-MM-dd");
+                if (!nowday.Equals(lastlog))
+                {
+                    user.exp += 10;
+                }
+                user.lastLogTime = now;
+                new GetUsers().UpdateUser(user);
                 re.state = "Error";
                 re.message = "登录成功";
                 return Json(re);
@@ -66,7 +75,7 @@ namespace ASP.NET_xmsz.Controllers
                 re.message = "注册成功";
                 return Json(re);
             }
-            else if(addnum==2)
+            else if (addnum == 2)
             {
                 re.state = "Error";
                 re.message = "注册失败,已经有相同的用户名";

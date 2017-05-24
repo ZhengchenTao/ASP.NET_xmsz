@@ -40,6 +40,9 @@ namespace Biz
             District province = db.district.SingleOrDefault(d => d.id == city.parent_id);
             return province.name + "," + city.name;
         }
-
+        public District getProvince(int id)
+        {
+            return db.district.SingleOrDefault(a => a.id == id);
+        }
     }
 }

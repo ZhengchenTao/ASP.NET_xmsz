@@ -1,4 +1,4 @@
-﻿@model Biz.Users
+﻿@model ASP.NET_xmsz.Models.Personedit
 @using PagedList.Mvc
 <style>
     .person {
@@ -51,66 +51,110 @@
                 $.each(JSON.parse(data), function (index, value) {
                     $('#pro').append("<option value='" + value.id + "'>" + value.name + "</option>");
                 })
+                $('#pro').val(@Model.parent);
+                changepro(1);
             }
         });
         $('#pro').change(function () {
-            var pro = $("#pro").val();
-            $.ajax({
-                type: "post",
-                data: { pro: pro },
-                url: "GetCity",
-                success: function (data) {
-                    $('#city option').remove();
-                    $.each(JSON.parse(data), function (index, value) {
-                        $('#city').append("<option value='" + value.id + "'>" + value.name + "</option>");
-                    })
-                }
-            })
-        })
+            changepro(0);
+        });
         $('#lefile').change(function () {
-            $('#photoCover').val($(this).val());
+            var img = $(this).val();
+            var imgtype = img.split(".")[1];
+            if (imgtype != "jpg" && imgtype != "png" && imgtype != "jpeg") {
+                $('#message-content').html(null);
+                $('#message-content').append("格式不正确");
+                $('#mes').modal('show');
+                $('#mes').on('shown.bs.modal');
+                $('#model-btn').click(function () {
+                    $('#mes').modal('hide');
+                });
+            } else {
+                $('#photoCover').val(img);
+            }
         });
     });
+    function changepro(flag) {
+        var pro = $("#pro").val();
+        $.ajax({
+            type: "post",
+            data: { pro: pro },
+            url: "GetCity",
+            success: function (data) {
+                $('#districtId option').remove();
+                $.each(JSON.parse(data), function (index, value) {
+                    $('#districtId').append("<option value='" + value.id + "'>" + value.name + "</option>");
+                })
+                if (flag = 1) {
+                    $('#districtId').val(@Model.city);
+                }
+            }
+        })
+    }
 </script>
 <div class="person">
     <div class="person-top row">
-        <div class="headportrait-left col-md-3">
-            <img src="~/img/headportrait/@Model.headportrait" alt="未上传头像" class="img-thumbnail"><br />
-            <input id="lefile" type="file" style="display:none">
-            <div class="input-append">
-                <input id="photoCover" class="form-control" type="text" style="height:30px;" placeholder="请选择上传的图片" disabled="disabled">
-                <a class="btn btn-primary" onclick="$('#lefile').click();">选择文件</a>
+        <form action="DoEdit" method="post">
+            <div class="headportrait-left col-md-3">
+                <img src="~/img/headportrait/@Model.user.headportrait" alt="未上传头像" class="img-thumbnail"><br />
+                <input id="lefile" type="file" style="display:none">
+                <div class="input-append">
+                    <input id="photoCover" class="form-control" type="text" style="height:30px;" placeholder="请选择上传的图片" disabled="disabled">
+                    <a class="btn btn-primary" onclick="$('#lefile').click();">选择文件</a>
+                </div>
             </div>
-        </div>
-        <div class="headportrait-right col-md-9">
-            <div class="edit_top col-md-12">
-                <h3>@Model.username<span>个人信息修改</span></h3>
+            <div class="headportrait-right col-md-9">
+                <div class="edit_top col-md-12">
+                    <h3>@Model.user.username<span>个人信息修改</span></h3>
+                </div>
+                <div class="edit_bottom col-md-12">
+                    <table width="100%" style="border-collapse:separate;border-spacing:10px;">
+                        <tr>
+                            <td style="width:11%" class="text-right">性 别：</td>
+                            <td style="width:21%">
+                                <select class="form-control" id="sex" name="sex" style="width:100%">
+                                    <option value="0">男</option>
+                                    <option value="1">女</option>
+                                </select>
+                            </td>
+                            <td style="width:11%" class="text-right">省 份：</td>
+                            <td style="width:21%">
+                                <select class="form-control" id="pro">
+                                    <option value=""></option>
+                                </select>
+                            </td>
+                            <td style="width:11%" class="text-right">城 市：</td>
+                            <td style="width:21%">
+                                <select class="form-control" id="districtId" name="districtId">
+                                    <option value="" selected="selected">请选择省份</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>生日</td>
+                            <td>
+                                <input class="form-control" type="text"id="birthday" name="birthday" value="@Model.user.birthday.ToString("yyyy-MM-dd")"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>个人简介</td>
+                            <td colspan="5">
+                                <textarea class="form-control" id="introduce" name="introduce">@Model.user.introduce</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <input class="btn btn-primary" type="submit" value="提交" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-            <div class="edit_bottom col-md-12">
-                <table width="100%">
-                    <tr>
-                        <td style="width:11%" class="text-right">性 别：</td>
-                        <td style="width:21%">
-                            <select class="form-control" id="sex" style="width:100%">
-                                <option value="0">男</option>
-                                <option value="1">女</option>
-                            </select>
-                        </td>
-                        <td style="width:11%" class="text-right">省 份：</td>
-                        <td style="width:21%">
-                            <select class="form-control" id="pro">
-                                <option value=""></option>
-                            </select>
-                        </td>
-                        <td style="width:11%" class="text-right">城 市：</td>
-                        <td style="width:21%">
-                            <select class="form-control" id="city">
-                                <option value="" selected="selected">请选择省份</option>
-                            </select>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
