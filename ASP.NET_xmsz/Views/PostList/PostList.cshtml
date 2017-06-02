@@ -57,11 +57,11 @@
                         int check = new Biz.GetReply().SelectReply(post.Id).Count();
                         <tr>
                             <td><a href="/Post/ShowPost?postid=@post.Id">@post.Title</a></td>
-                            <td><a href="">@post.Users.username</a></td>
+                            <td><a href="/Person/Index?id=@post.Users.Id">@post.Users.username</a></td>
                             <td><span id="pcheck">@post.ClickNum</span>/<span>@check</span></td>
                             @if (lastrep != null)
                             {
-                                <td><a href=""><span id="pcheckname">@lastrep.Users.username</span></a>&nbsp;<span>@string.Format("{0:f}", lastrep.ReplyTime)</span></td>
+                                <td><a href="/Person/Index?id=@lastrep.Users.Id"><span id="pcheckname">@lastrep.Users.username</span></a>&nbsp;<span>@string.Format("{0:f}", lastrep.ReplyTime)</span></td>
                             }
                             else
                             {

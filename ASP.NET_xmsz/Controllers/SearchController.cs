@@ -18,6 +18,7 @@ namespace ASP.NET_xmsz.Controllers
             Db.Forums = new GetForums().SelectForums();
             Db.Post = new GetPost().SearchPost(postname).OrderByDescending(p => p.CreateTime).ToPagedList(page, 10);
             Db.CurrentForums = new GetForums().SelectForums(forumsid);
+            Db.searchname = postname;
             return View("../Post/PostSearch", Db);
         }
     }

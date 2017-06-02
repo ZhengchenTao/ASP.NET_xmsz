@@ -16,5 +16,7 @@ namespace ASP.NET_xmsz.Models
         public IList<Forums> CurrentForums { get; set; }
         public IList<Users> Users { get; set; }
 
+        public string searchname { get; set; }
+
     }
 }
